@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;           /* base font size */
+    scroll-behavior: smooth;
+    line-height: 1.6;          /* default line height */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color:  #e8e6e1;;
+    background-color: #0f0f11;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    margin-bottom:  1rem;
+    color: #e8e6e1;
+}
+
+h1, h2, h3, h4{
+    font-family: 'Playfair Display', serif;
+    color: #e8e6e1;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size:  48px;   /* 48px */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-top: 0;
+}
+
+h2 {
+    font-size:  36px;   /* 36px */
+    font-weight: 700;
+    margin-top:  4rem;
+}
+ 
+/* h3 — sub-section */
+h3 {
+    font-size: 30px;   /* 30px */
+    font-weight: 600;
+    margin-top:  3rem;
+}
+ 
+/* h4 — card / panel title */
+h4 {
+    font-size: 24px;   /* 24px */
+    font-weight: 600;
+    font-family: 'Inter', system-ui, sans-serif;
+    margin-top:  2rem;
+}
