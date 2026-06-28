@@ -1,0 +1,80 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 1 - Five Tags Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background-color: yellow;
+        }
+
+        blockquote {
+            border-left: 4px solid #333;
+            padding-left: 15px;
+            font-style: italic;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Five Tags Challenge</h1>
+
+    <h2>1. Abbreviation Tag</h2>
+    <p>
+        I am learning
+        <abbr title="HyperText Markup Language">HTML</abbr>
+        to build websites.
+    </p>
+
+    <h2>2. Blockquote and Cite Tags</h2>
+    <blockquote>
+        "Success is not final, failure is not fatal:
+        it is the courage to continue that counts."
+    </blockquote>
+    <p>— <cite>Winston Churchill</cite></p>
+
+    <h2>3. Code Tag</h2>
+    <p>
+        Example of HTML code:
+        <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>
+    </p>
+
+    <h2>4. Mark Tag</h2>
+    <p>
+        My goal is to become a
+        <mark>professional web developer</mark>.
+    </p>
+
+    <h2>5. Time Tag</h2>
+    <p>
+        Assignment completed on
+        <time datetime="2026-06-23">June 23, 2026</time>.
+    </p>
+
+    <h2>6. Details and Summary Tags</h2>
+    <details>
+        <summary>Click to learn more about me</summary>
+        <p>
+            My name is Nahashon Mutahi. I am passionate about
+            programming, web development, and technology.
+        </p>
+    </details>
+
+</body>
+</html>
+```
