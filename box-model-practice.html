@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model Practice</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ── Page layout ── */
+        body {
+            background: #0f0f11;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #e8e6e1;
+            padding: 40px 24px;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #e8e6e1;
+        }
+        .page-subtitle {
+            color: #8a8896;
+            margin-bottom: 48px;
+            font-size: 0.95rem;
+        }
+
+        /* Section headers */
+        .section {
+            margin-bottom: 56px;
+        }
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #c8b4f0;
+            margin-bottom: 6px;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #e8e6e1;
+        }
+        .section-desc {
+            font-size: 0.875rem;
+            color: #8a8896;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        /* EXERCISE 1 — Box Model Layers */
+        .boxes-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .box-demo {
+            position: relative;
+        }
+        .box-label {
+            font-size: 0.7rem;
+            color: #8a8896;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        /* Box 1 — Content only */
+        .box-content {
+            width: 120px;
+            height: 80px;
+            background: #c8b4f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #0f0f11;
+        }
+
+        /* Box 2 — Content + Padding */
+        .box-padding {
+            width: 120px;
+            height: 80px;
+            background: #c8b4f0;
+            padding: 20px;                  /* padding expands clickable area */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #0f0f11;
+            outline: 2px dashed #f0c896;    /* shows the padding boundary */
+            outline-offset: 0px;
+        }
+
+        /* Box 3 — Content + Padding + Border */
+        .box-border {
+            width: 120px;
+            height: 80px;
+            background: #c8b4f0;
+            padding: 16px;
+            border: 4px solid #f0c896;      /* visible border layer */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #0f0f11;
+        }
+
+        /* Box 4 — Content + Padding + Border + Margin */
+        .box-margin-wrapper {
+            background: #1a1a1f;
+            border: 1px dashed #2a2a32;
+            display: inline-block;
+        }
+        .box-margin {
+            width: 120px;
+            height: 80px;
+            background: #c8b4f0;
+            padding: 12px;
+            border: 4px solid #f0c896;
+            margin: 20px;                   /* space between this box and its container */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #0f0f11;
+        }
+
+        /* Dimension tags */
+        .dim-tag {
+            font-size: 0.65rem;
+            color: #8a8896;
+            margin-top: 6px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* EXERCISE 2 — Debug the Layout */
+        .debug-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .debug-col {
+            flex: 1;
+            min-width: 260px;
+        }
+        .debug-col-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .debug-col-title.broken { color: #f87171; }
+        .debug-col-title.fixed  { color: #86efac; }
+
+        /* BROKEN: width:300 + padding:20 each side = 340px total */
+        .broken-box {
+            width: 300px;
+            padding: 20px;
+            border: none;
+            background: rgba(248, 113, 113, 0.12);
+            border: 2px dashed #f87171;
+            color: #f87171;
+            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* FIXED: box-sizing:border-box keeps total width at exactly 300px */
+        .fixed-box {
+            width: 300px;
+            padding: 20px;
+            border: none;
+            box-sizing: border-box;         /* ← THE FIX */
+            background: rgba(134, 239, 172, 0.10);
+            border: 2px dashed #86efac;
+            color: #86efac;
+            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .explanation {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #8a8896;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+        .explanation code {
+            background: #1a1a1f;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            color: #c8b4f0;
+        }
+
+        /* EXERCISE 3 — Card Component */
+        .card {
+            width: 300px;                   /* total card width */
+            border: 1px solid #3a3a45;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #1a1a1f;
+            box-sizing: border-box;         /* border included in 300px */
+        }
+
+        .card-image {
+            width: 100%;                    /* full width of card */
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            background: url('tiger_laying_hero_background.jpg') no-repeat center center;
+            position: relative;
+        }
+        .card-image-label {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: rgba(15,15,17,0.6);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            padding: 20px;                  /* 20px padding on all sides */
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e8e6e1;
+            margin-bottom: 15px;            /* exactly 15px as specified */
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: #8a8896;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background: #c8b4f0;
+            color: #0f0f11;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.2s ease;
+            box-sizing: border-box;
+        }
+        .card-btn:hover {
+            background: #f0c896;
+        }
+
+        /* Annotation overlay for the card */
+        .card-annotation {
+            margin-top: 16px;
+            font-size: 0.72rem;
+            color: #8a8896;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+        }
+        .card-annotation span { color: #c8b4f0; }
+    </style>
+</head>
+<body>
+
+    <p class="page-title">Box Model Practice</p>
+    <p class="page-subtitle">Three exercises to understand how CSS calculates element dimensions.</p>
+
+    <!-- ══════════════════════════════════
+         EXERCISE 1
+    ══════════════════════════════════ -->
+    <div class="section">
+        <p class="section-label">Exercise 1</p>
+        <p class="section-title">Box Model Layers</p>
+        <p class="section-desc">
+            Each box adds one layer. Every element is made of four layers stacked outward:
+            content → padding → border → margin.
+        </p>
+
+        <div class="boxes-row">
+
+            <div class="box-demo">
+                <p class="box-label">Content</p>
+                <div class="box-content">Content</div>
+                <p class="dim-tag">background-color only</p>
+            </div>
+
+            <div class="box-demo">
+                <p class="box-label">+ Padding</p>
+                <div class="box-padding">Content</div>
+                <p class="dim-tag">padding: 20px (dashed outline)</p>
+            </div>
+
+            <div class="box-demo">
+                <p class="box-label">+ Border</p>
+                <div class="box-border">Content</div>
+                <p class="dim-tag">border: 4px solid</p>
+            </div>
+
+            <div class="box-demo">
+                <p class="box-label">+ Margin</p>
+                <div class="box-margin-wrapper">
+                    <div class="box-margin">Content</div>
+                </div>
+                <p class="dim-tag">margin: 20px (grey area)</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         EXERCISE 2
+    ══════════════════════════════════ -->
+    <div class="section">
+        <p class="section-label">Exercise 2</p>
+        <p class="section-title">Debug the Layout</p>
+        <p class="section-desc">
+            Without <code style="background:#1a1a1f;padding:1px 5px;border-radius:3px;color:#c8b4f0;font-size:0.8rem">box-sizing: border-box</code>,
+            padding is added <em>on top of</em> the width — making the box 340px instead of 300px.
+        </p>
+
+        <div class="debug-row">
+            <div class="debug-col">
+                <p class="debug-col-title broken">✗ Broken — renders at 340px</p>
+                <div class="broken-box">
+                    width: 300px<br>
+                    padding: 20px<br>
+                    /* actual: 300 + 20 + 20 = 340px */
+                </div>
+                <p class="explanation">
+                    Default <code>box-sizing</code> is <code>content-box</code>.
+                    Padding is added outside the declared width.
+                </p>
+            </div>
+
+            <div class="debug-col">
+                <p class="debug-col-title fixed">✓ Fixed — renders at 300px</p>
+                <div class="fixed-box">
+                    width: 300px<br>
+                    padding: 20px<br>
+                    box-sizing: border-box ← fix
+                </div>
+                <p class="explanation">
+                    <code>border-box</code> makes padding and border count
+                    <em>inside</em> the declared width. Total stays 300px.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         EXERCISE 3
+    ══════════════════════════════════ -->
+    <div class="section">
+        <p class="section-label">Exercise 3</p>
+        <p class="section-title">Card Component</p>
+        <p class="section-desc">
+            300px total width · 20px padding · 1px border · image · title · description · button.
+        </p>
+
+        <div class="card">
+            <!-- Image: full width, sits flush at top outside padding -->
+            <div class="card-image">
+                <div class="card-image-label">Project Image</div>
+            </div>
+
+            <div class="card-body">
+                <h4 class="card-title">Noma Studio Rebrand</h4>
+                <p class="card-description">
+                    A complete identity system for a Copenhagen architecture practice —
+                    logo, type scale, and environmental signage.
+                </p>
+                <button class="card-btn">View Project</button>
+            </div>
+        </div>
+
+        <div class="card-annotation">
+            <span>total width:</span>   300px (box-sizing: border-box)<br>
+            <span>border:</span>        1px solid #3a3a45<br>
+            <span>padding:</span>       20px (card-body only — image is flush)<br>
+            <span>title margin:</span>  15px bottom<br>
+            <span>button:</span>        width: 100% of card-body
+        </div>
+    </div>
+
+</body>
+</html>
